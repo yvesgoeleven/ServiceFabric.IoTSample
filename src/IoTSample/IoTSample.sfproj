@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Service Fabric Tools\Microsoft.VisualStudio.Azure.Fabric.ApplicationProject.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>d99421bc-fcb0-4968-859f-17f1c1741119</ProjectGuid>
+    <ProjectVersion>0.11</ProjectVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="ApplicationManifest.xml" />
+    <None Include="ApplicationParameters\Cloud.xml" />
+    <None Include="ApplicationParameters\Local.xml" />
+    <None Include="PublishProfiles\Cloud.xml" />
+    <None Include="PublishProfiles\Local.xml" />
+    <None Include="Scripts\Deploy-FabricApplication.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dashboard\Dashboard.xproj" />
+    <ProjectReference Include="..\DeviceList\DeviceList.csproj" />
+    <ProjectReference Include="..\Device\Device.csproj" />
+    <ProjectReference Include="..\EventHubProcessorService\EventHubProcessorService.csproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Service Fabric Tools\Microsoft.VisualStudio.Azure.Fabric.ApplicationProject.targets" />
+</Project>

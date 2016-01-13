@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net451": {
+      "wrappedProject": "../../DeviceList.Interfaces/DeviceList.Interfaces.csproj",
+      "bin": {
+        "assembly": "../../DeviceList.Interfaces/obj/x64/{configuration}/DeviceList.Interfaces.dll",
+        "pdb": "../../DeviceList.Interfaces/obj/x64/{configuration}/DeviceList.Interfaces.pdb"
+      },
+      "dependencies": {
+        "Microsoft.ServiceFabric": "4.4.87-preview",
+        "Microsoft.ServiceFabric.Actors": "1.4.87-preview",
+        "Microsoft.ServiceFabric.Data": "1.4.87-preview",
+        "Microsoft.ServiceFabric.Services": "1.4.87-preview"
+      }
+    }
+  }
+}

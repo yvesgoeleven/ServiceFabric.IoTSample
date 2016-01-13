@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="IoTSampleType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+   <Parameters>
+      <Parameter Name="DeviceActorService_PartitionCount" DefaultValue="10" />
+      <Parameter Name="DeviceActorService_MinReplicaSetSize" DefaultValue="2" />
+      <Parameter Name="DeviceActorService_TargetReplicaSetSize" DefaultValue="3" />
+      <Parameter Name="DeviceListActorService_PartitionCount" DefaultValue="10" />
+      <Parameter Name="DeviceListActorService_MinReplicaSetSize" DefaultValue="2" />
+      <Parameter Name="DeviceListActorService_TargetReplicaSetSize" DefaultValue="3" />
+      <Parameter Name="EventHubProcessorService_MinReplicaSetSize" DefaultValue="2" />
+      <Parameter Name="EventHubProcessorService_TargetReplicaSetSize" DefaultValue="3" />
+   </Parameters>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="DevicePkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="DeviceListPkg" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="Dashboard" ServiceManifestVersion="1.0.0" />
+   </ServiceManifestImport>
+   <ServiceManifestImport>
+      <ServiceManifestRef ServiceManifestName="EventHubProcessorServicePkg" ServiceManifestVersion="1.0.0" />
+      <ConfigOverrides />
+   </ServiceManifestImport>
+   <DefaultServices>
+      <Service Name="DeviceActorService" GeneratedIdRef="3e4e045a-0968-4188-ba2e-3e3e68ae3f83">
+         <StatefulService ServiceTypeName="DeviceActorServiceType" TargetReplicaSetSize="[DeviceActorService_TargetReplicaSetSize]" MinReplicaSetSize="[DeviceActorService_MinReplicaSetSize]">
+            <UniformInt64Partition PartitionCount="[DeviceActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+         </StatefulService>
+      </Service>
+      <Service Name="DeviceListActorService" GeneratedIdRef="5f725607-dc1f-4cae-a55c-24826a09e99f">
+         <StatefulService ServiceTypeName="DeviceListActorServiceType" TargetReplicaSetSize="[DeviceListActorService_TargetReplicaSetSize]" MinReplicaSetSize="[DeviceListActorService_MinReplicaSetSize]">
+            <UniformInt64Partition PartitionCount="[DeviceListActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+         </StatefulService>
+      </Service>
+      <Service Name="DashboardService">
+         <StatelessService ServiceTypeName="DashboardType" InstanceCount="-1">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>
+      <Service Name="EventHubProcessorService">
+         <StatefulService ServiceTypeName="EventHubProcessorServiceType" TargetReplicaSetSize="[EventHubProcessorService_TargetReplicaSetSize]" MinReplicaSetSize="[EventHubProcessorService_MinReplicaSetSize]">
+            <UniformInt64Partition PartitionCount="1" LowKey="0" HighKey="32" />
+         </StatefulService>
+      </Service>
+   </DefaultServices>
+</ApplicationManifest>

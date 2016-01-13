@@ -1,0 +1,27 @@
+﻿@using System.Threading.Tasks
+@using Dashboard.Controllers
+@model List<DeviceInfo>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+    <table>
+        <thead>
+            <tr>
+                <th>DeviceId</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        @foreach (var device in Model)
+        {
+            <tr>
+                <td>@device.DeviceId</td>
+                <td>@device.State</td>
+            </tr>
+        }
+    </table>
+    
+
+</div>
